@@ -2,7 +2,7 @@ import logging
 from datetime import datetime
 import os
 
-LOG_FILE=f"{datetime.now().strftime("%m-%d-%Y_%H_%M_%S")}.log"
+LOG_FILE=f"{datetime.now().strftime('%m-%d-%Y_%H_%M_%S')}.log"
 
 LOG_PATH=os.path.join(os.getcwd(),"logs")
 os.makedirs(LOG_PATH,exist_ok=True)
@@ -14,3 +14,4 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+logging.info("Logger is working")
