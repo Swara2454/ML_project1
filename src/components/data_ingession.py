@@ -6,6 +6,9 @@ from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import Datatransformer
+from src.components.data_transformation import DataTransformerConfig
+
 @dataclass
 class DataIngessionConfig:
     train_data_path:str=os.path.join('artifact','train.csv')
@@ -46,4 +49,7 @@ class DataIngession:
 
 if __name__=="__main__":
     obj=DataIngession()
-    obj.initiate_data_ingession()
+    train_data,test_data=obj.initiate_data_ingession()
+
+    data_transformation=Datatransformer()
+    data_transformation.initiate_data_transformation(train_data,test_data)
