@@ -6,8 +6,14 @@ from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+import warnings
+warnings.filterwarnings("ignore")
+
 from src.components.data_transformation import Datatransformer
 from src.components.data_transformation import DataTransformerConfig
+
+from src.components.model_training import ModelTrainerConfig
+from src.components.model_training import ModelTrainer
 
 @dataclass
 class DataIngessionConfig:
@@ -52,4 +58,7 @@ if __name__=="__main__":
     train_data,test_data=obj.initiate_data_ingession()
 
     data_transformation=Datatransformer()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+    model_trainer=ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_arr,test_arr))
